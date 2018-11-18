@@ -1,4 +1,6 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet, Dimensions } from 'react-native'
+
+const { width } = Dimensions.get('window')
 
 const styles = StyleSheet.create({
   container: {
@@ -11,9 +13,10 @@ const styles = StyleSheet.create({
   contentContainer: {
     position: 'relative',
     top: 50,
-    marginHorizontal: 22,
+    width,
     alignItems: 'center',
     justifyContent: 'center',
+    paddingBottom: 100,
   },
 
   header: {
