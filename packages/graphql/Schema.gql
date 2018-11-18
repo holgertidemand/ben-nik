@@ -1,0 +1,56 @@
+  scalar DateTime
+
+  type Athlete {
+    id: ID!
+    name: String!
+    home: String!
+    age: Int!
+    votingOpen: Boolean!
+    hasRaced: Boolean!
+    startTime: String
+    result: Result!
+  }
+
+  type Result {
+    id: ID!
+    athlete: Athlete!
+    totalScore: Int!
+    numberOfVotes: Int!
+    avrageScore: Float!
+  }
+
+  input NewAthleteInput {
+    name: String!
+    age: Int!
+    home: String
+    startTime: String
+  }
+
+  input NewVoteInput {
+    score: Int!
+    placedOn: ID!
+  }
+
+  input toggleVotingStatusInput {
+    status: Boolean!
+    athlete: ID! 
+  }
+
+  input toggleHasRacedStatusInput {
+    status: Boolean!
+    athlete: ID!
+  }
+
+  type Query {
+    allAthletes: [Athlete!]
+    allResults: [Result!]
+    getAthlete(athleteId: ID!): Athlete!
+  }
+
+  type Mutation {
+    addNewAthlete(input: NewAthleteInput!): Athlete!
+    addNewVote(input: NewVoteInput!): Result!
+    toggleAthleteVotingStatus(input: toggleVotingStatusInput!): Boolean!
+    toggleAthleteHasRacedStatus(input: toggleHasRacedStatusInput!): Boolean!
+  }
+
